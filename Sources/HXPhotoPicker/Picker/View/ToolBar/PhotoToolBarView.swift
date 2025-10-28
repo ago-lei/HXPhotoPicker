@@ -29,10 +29,10 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
         var viewHeight: CGFloat = toolbarHeight
         if type == .picker {
             if isShowPrompt {
-                viewHeight += 70
+                viewHeight += 100
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 70
+                    viewHeight += 100
                 }
             }
         }else if type == .preview {
@@ -40,7 +40,7 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
                 viewHeight += 70
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 70
+                    viewHeight += 100
                 }
             }
         }
@@ -267,7 +267,7 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
     
     private func initSelectedView() {
         let viewConfig = pickerConfig.previewView.bottomView
-        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: 70))
+        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: 100))
         selectedView.isPhotoList = type == .picker
         if let cellClass = viewConfig.customSelectedViewCellClass {
             selectedView.collectionView.register(
