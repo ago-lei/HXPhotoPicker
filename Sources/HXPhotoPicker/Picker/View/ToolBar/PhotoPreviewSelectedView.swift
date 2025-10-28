@@ -279,7 +279,7 @@ class PhotoPreviewSelectedView: UIView,
         myCell.cancelRequest()
     }
     func getItemSize(photoAsset: PhotoAsset) -> CGSize {
-        let minWidth: CGFloat = 100 - collectionViewLayout.sectionInset.top - collectionViewLayout.sectionInset.bottom
+        let minWidth: CGFloat = 90 - collectionViewLayout.sectionInset.top - collectionViewLayout.sectionInset.bottom
 //        let maxWidth: CGFloat = minWidth / 9 * 16
         let maxHeight: CGFloat = minWidth
 //        let aspectRatio = maxHeight / photoAsset.imageSize.height
