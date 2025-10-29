@@ -41,7 +41,8 @@ class PhotoPreviewListViewCell: UICollectionViewCell {
         photoView = PhotoThumbnailView()
         photoView.imageView.size = size
         contentView.addSubview(photoView)
-        
+        contentView.layer.cornerRadius = 5
+        contentView.clipsToBounds = true
         tickView = TickView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         tickView.isHidden = true
         tickView.cornersRound(radius: 5, corner: .allCorners)

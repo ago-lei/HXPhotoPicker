@@ -147,9 +147,9 @@ class PhotoPreviewListView: UIView {
         guard bounds.width > 0 else { return }
         let offset = (bounds.width - PhotoPreviewListViewLayout.collapsedItemWidth) / 2
         collectionView.contentInset = .init(
-            top: 0,
+            top: 10,
             left: offset,
-            bottom: 0,
+            bottom: 5,
             right: offset
         )
         if let lastChangedPage, UIDevice.isPad {

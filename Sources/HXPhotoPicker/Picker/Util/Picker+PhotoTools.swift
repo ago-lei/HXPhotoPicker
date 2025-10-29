@@ -244,14 +244,15 @@ extension PhotoTools {
             config.allowSelectedTogether = true
         }
         let wxColor = "#07C160".color
+        config.modalPresentationStyle = .fullScreen
         config.selectOptions = [.gifPhoto, .livePhoto, .video]
         config.albumShowMode = .popup
         config.appearanceStyle = .normal
-        config.navigationViewBackgroundColor = "#2E2F30".color
-        config.navigationTitleColor = .white
-        config.navigationTintColor = .white
-        config.statusBarStyle = .lightContent
-        config.navigationBarStyle = .black
+  
+        config.navigationTitleColor = .white  // 导航栏标题用白色
+        config.navigationTintColor = .white  // 导航栏按钮用白色
+        config.statusBarStyle = .lightContent  // 状态栏文字用白色
+        config.navigationBarStyle = .black  // 使用黑色样式以显示白色内容
         
         config.splitSeparatorLineColor = "#434344".color.withAlphaComponent(0.6)
         
@@ -278,7 +279,7 @@ extension PhotoTools {
         config.albumController.imageColor = wxColor
         config.albumController.arrowColor = .white
         
-        config.photoList.backgroundColor = "#2E2F30".color
+        config.photoList.backgroundColor = .black//"#2E2F30".color
         config.photoList.leftNavigationItems = [PhotoImageCancelItemView.self]
         config.photoList.rightNavigationItems = [PhotoPickerFilterItemView.self]
         
@@ -401,7 +402,7 @@ extension PhotoTools {
         var config = getWXPickerConfig()
         config.modalPresentationStyle = .fullScreen
         config.appearanceStyle = .normal
-        config.selectOptions = [.photo, .gifPhoto, .livePhoto, .video]
+        config.selectOptions = [.photo, .gifPhoto, .livePhoto]
         config.albumShowMode = .popup
         config.navigationTitleColor = .white
         config.navigationTintColor = .white
@@ -421,7 +422,7 @@ extension PhotoTools {
         config.albumController.mediaTitleColor = redColor
         config.albumController.imageColor = redColor
         
-        config.photoList.listView = PhotoPickerPageViewController.self
+//        config.photoList.listView = PhotoPickerPageViewController.self
         config.photoList.allowSwipeToSelect = false
         config.photoList.backgroundColor = .black
         config.photoList.leftNavigationItems = [PhotoImageCancelItemView.self]

@@ -26,7 +26,11 @@ class PhotoPreviewListViewLayout: UICollectionViewLayout {
     let style: Style
     
     var expandedItemWidth: CGFloat?
-    static let collapsedItemWidth: CGFloat = 55 / 16 * 9
+    // 与 PhotoPreviewSelectedView 保持一致：90 - 10 (top inset) - 5 (bottom inset) = 75
+    // iPad 上使用更大的尺寸：110 - 10 (top inset) - 5 (bottom inset) = 95
+    static var collapsedItemWidth: CGFloat {
+        UIDevice.isPad ? 95 : 75
+    }
     
     private var attributesDictionary: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var contentSize: CGSize = .zero
@@ -89,11 +93,13 @@ class PhotoPreviewListViewLayout: UICollectionViewLayout {
             }
             let previousFrame = frames[previousIndexPath]
             let x = previousFrame.map { $0.maxX + itemSpacing } ?? 0
+            // cell 高度与 PhotoPreviewSelectedView 保持一致，iPad 上使用更大的尺寸
+            let cellHeight: CGFloat = Self.collapsedItemWidth
             frames[indexPath] = CGRect(
                 x: x,
                 y: 0,
                 width: width,
-                height: collectionView.bounds.height
+                height: cellHeight
             )
         }
         
@@ -113,35 +119,8 @@ class PhotoPreviewListViewLayout: UICollectionViewLayout {
     }
     
     private func expandingItemWidth(in collectionView: UICollectionView) -> CGFloat {
-        let expandingThumbnailWidthToHeight: CGFloat
-        switch style {
-        case .expanded(let indexPath, let thumbnailWidthToHeight):
-            if let thumbnailWidthToHeight {
-                expandingThumbnailWidthToHeight = thumbnailWidthToHeight
-            } else if let cell = collectionView.cellForItem(at: indexPath) {
-                let cell = cell as! PhotoPreviewListViewCell
-                let image = cell.imageView.image
-                if let imageSize = image?.size, imageSize.height > 0 {
-                    expandingThumbnailWidthToHeight = imageSize.width / imageSize.height
-                } else {
-                    expandingThumbnailWidthToHeight = 0
-                }
-            } else {
-                expandingThumbnailWidthToHeight = 0
-            }
-        case .collapsed:
-            expandingThumbnailWidthToHeight = 0
-        }
-        
-        let minimumWidth = Self.collapsedItemWidth
-        let maximumWidth = 84.0
-        return min(
-            max(
-                collectionView.bounds.height * expandingThumbnailWidthToHeight,
-                minimumWidth
-            ),
-            maximumWidth
-        )
+        // 固定宽度，不根据图片比例缩放
+        return Self.collapsedItemWidth
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
