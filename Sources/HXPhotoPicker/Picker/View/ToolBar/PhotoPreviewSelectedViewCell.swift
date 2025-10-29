@@ -60,7 +60,8 @@ open class PhotoPreviewSelectedViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        contentView.layer.cornerRadius = 5
+        contentView.clipsToBounds = true
         photoView = PhotoThumbnailView()
         photoView.imageView.size = size
         contentView.addSubview(photoView)

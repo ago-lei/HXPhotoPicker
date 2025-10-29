@@ -14,7 +14,7 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
     
     public var toolbarHeight: CGFloat {
         if type == .browser {
-            return 70 + UIDevice.bottomMargin
+            return 90 + UIDevice.bottomMargin
         }
         if pickerConfig.selectMode == .single, isShowPrompt {
             return 0
@@ -26,21 +26,22 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
         if pickerConfig.selectMode == .single, isShowPrompt, type != .browser {
             return 55 + UIDevice.bottomMargin
         }
+        let additionalViewHeight: CGFloat = UIDevice.isPad ? 110 : 90
         var viewHeight: CGFloat = toolbarHeight
         if type == .picker {
             if isShowPrompt {
-                viewHeight += 90
+                viewHeight += additionalViewHeight
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 90
+                    viewHeight += additionalViewHeight
                 }
             }
         }else if type == .preview {
             if isShowPreviewList {
-                viewHeight += 70
+                viewHeight += additionalViewHeight
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 90
+                    viewHeight += additionalViewHeight
                 }
             }
         }
@@ -159,7 +160,8 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
             addSubview(contentView)
             viewConfig = pickerConfig.previewView.bottomView
             if isShowPreviewList {
-                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: 55))
+                let previewListHeight: CGFloat = UIDevice.isPad ? 110 : 90
+                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
                 previewListView.dataSource = self
                 addSubview(previewListView)
             }else {
@@ -184,7 +186,8 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
         }else {
             viewConfig = pickerConfig.previewView.bottomView
             if isShowPreviewList {
-                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: 55))
+                let previewListHeight: CGFloat = UIDevice.isPad ? 110 : 90
+                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
                 previewListView.dataSource = self
                 addSubview(previewListView)
             }else {
@@ -267,7 +270,8 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
     
     private func initSelectedView() {
         let viewConfig = pickerConfig.previewView.bottomView
-        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: 90))
+        let selectedViewHeight: CGFloat = UIDevice.isPad ? 110 : 90
+        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: selectedViewHeight))
         selectedView.isPhotoList = type == .picker
         if let cellClass = viewConfig.customSelectedViewCellClass {
             selectedView.collectionView.register(
@@ -490,9 +494,9 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
             }
             #endif
             if isShowPreviewList {
-                previewListView.y = 10
+                previewListView.y = 0
                 previewListView.width = width
-                contentView.y = 70
+                contentView.y = previewListView.frame.maxY
             }else {
                 if isShowSelectedView {
                     selectedView.y = 0
@@ -510,7 +514,7 @@ public class PhotoToolBarView: UIView, PhotoToolBar {
             updateOriginalViewFrame()
         }else {
             if isShowPreviewList {
-                previewListView.y = 10
+                previewListView.y = 0
                 previewListView.width = width
             }else {
                 if isShowSelectedView {
