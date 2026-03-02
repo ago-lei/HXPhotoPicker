@@ -32,7 +32,9 @@
       "name": "Core",
       "source_files": "Sources/HXPhotoPicker/Core/**/*.{swift}",
       "dependencies": {
-        "HXPhotoPicker/Resources": []
+        "HXPhotoPicker/Resources": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_CORE"
@@ -51,7 +53,9 @@
       "name": "Picker",
       "source_files": "Sources/HXPhotoPicker/Picker/**/*.{swift}",
       "dependencies": {
-        "HXPhotoPicker/Core": []
+        "HXPhotoPicker/Core": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_PICKER"
@@ -61,7 +65,9 @@
       "name": "Editor",
       "source_files": "Sources/HXPhotoPicker/Editor/**/*.{swift}",
       "dependencies": {
-        "HXPhotoPicker/EditorView": []
+        "HXPhotoPicker/EditorView": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_EDITOR"
@@ -71,7 +77,9 @@
       "name": "EditorView",
       "source_files": "Sources/HXPhotoPicker/Editor+View/**/*.{swift}",
       "dependencies": {
-        "HXPhotoPicker/Core": []
+        "HXPhotoPicker/Core": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_EDITOR_VIEW"
@@ -84,7 +92,9 @@
           "name": "Lite",
           "source_files": "Sources/HXPhotoPicker/Camera/**/*.{swift}",
           "dependencies": {
-            "HXPhotoPicker/Core": []
+            "HXPhotoPicker/Core": [
+
+            ]
           },
           "pod_target_xcconfig": {
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_CAMERA"
@@ -93,7 +103,9 @@
         {
           "name": "Location",
           "dependencies": {
-            "HXPhotoPicker/Camera/Lite": []
+            "HXPhotoPicker/Camera/Lite": [
+
+            ]
           },
           "source_files": "Sources/HXPhotoPicker/Camera+Location/**/*.{swift}",
           "pod_target_xcconfig": {
@@ -105,16 +117,24 @@
     {
       "name": "NoLocation",
       "dependencies": {
-        "HXPhotoPicker/Picker": [],
-        "HXPhotoPicker/Editor": [],
-        "HXPhotoPicker/Camera/Lite": []
+        "HXPhotoPicker/Picker": [
+
+        ],
+        "HXPhotoPicker/Editor": [
+
+        ],
+        "HXPhotoPicker/Camera/Lite": [
+
+        ]
       }
     },
     {
       "name": "GIFImageView",
       "source_files": "Sources/ImageView/GIFImageView.swift",
       "dependencies": {
-        "SwiftyGif": []
+        "SwiftyGif": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_CORE_IMAGEVIEW_GIF"
@@ -124,7 +144,9 @@
       "name": "KFImageView",
       "source_files": "Sources/ImageView/KFImageView.swift",
       "dependencies": {
-        "Kingfisher": []
+        "Kingfisher": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_CORE_IMAGEVIEW_KF"
@@ -134,7 +156,9 @@
       "name": "SDImageView",
       "source_files": "Sources/ImageView/SDImageView.swift",
       "dependencies": {
-        "SDWebImage": []
+        "SDWebImage": [
+
+        ]
       },
       "pod_target_xcconfig": {
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "HXPICKER_ENABLE_CORE_IMAGEVIEW_SD"
@@ -143,30 +167,48 @@
     {
       "name": "SwiftyGif",
       "dependencies": {
-        "HXPhotoPicker/Default": [],
-        "HXPhotoPicker/GIFImageView": []
+        "HXPhotoPicker/Default": [
+
+        ],
+        "HXPhotoPicker/GIFImageView": [
+
+        ]
       }
     },
     {
       "name": "Kingfisher",
       "dependencies": {
-        "HXPhotoPicker/Default": [],
-        "HXPhotoPicker/KFImageView": []
+        "HXPhotoPicker/Default": [
+
+        ],
+        "HXPhotoPicker/KFImageView": [
+
+        ]
       }
     },
     {
       "name": "SDWebImage",
       "dependencies": {
-        "HXPhotoPicker/Default": [],
-        "HXPhotoPicker/SDImageView": []
+        "HXPhotoPicker/Default": [
+
+        ],
+        "HXPhotoPicker/SDImageView": [
+
+        ]
       }
     },
     {
       "name": "Default",
       "dependencies": {
-        "HXPhotoPicker/Picker": [],
-        "HXPhotoPicker/Editor": [],
-        "HXPhotoPicker/Camera": []
+        "HXPhotoPicker/Picker": [
+
+        ],
+        "HXPhotoPicker/Editor": [
+
+        ],
+        "HXPhotoPicker/Camera": [
+
+        ]
       }
     }
   ],

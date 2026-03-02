@@ -15,7 +15,7 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
     
     public var toolbarHeight: CGFloat {
         if type == .browser {
-            return 70 + UIDevice.bottomMargin
+            return 90 + UIDevice.bottomMargin
         }
         if pickerConfig.selectMode == .single, isShowPrompt {
             return 0
@@ -27,21 +27,26 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
         if pickerConfig.selectMode == .single, isShowPrompt, type != .browser {
             return 55 + UIDevice.bottomMargin
         }
+        let additionalViewHeight: CGFloat = UIDevice.isPad ? 110 : 90
         var viewHeight: CGFloat = toolbarHeight
         if type == .picker {
             if isShowPrompt {
-                viewHeight += 70
+//                viewHeight += 70
+                viewHeight += additionalViewHeight
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 75
+//                    viewHeight += 75
+                    viewHeight += additionalViewHeight
                 }
             }
         }else if type == .preview {
             if isShowPreviewList {
-                viewHeight += 75
+//                viewHeight += 75
+                viewHeight += additionalViewHeight
             }else {
                 if isShowSelectedView, selectedView.assetCount > 0 {
-                    viewHeight += 75
+//                    viewHeight += 75
+                    viewHeight += additionalViewHeight
                 }
             }
         }
@@ -154,7 +159,10 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
                 previewShadeMaskLayer.startPoint = .init(x: 0, y: 0.5)
                 previewShadeMaskLayer.endPoint = .init(x: 1, y: 0.5)
                 
-                previewShadeView = UIView(frame: .init(x: 0, y: 0, width: width, height: 55))
+           
+                let previewListHeight: CGFloat = UIDevice.isPad ? 110 : 90
+//                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
+                previewShadeView = UIView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
                 previewShadeView.addSubview(previewListView)
                 previewShadeView.layer.mask = previewShadeMaskLayer
                 addSubview(previewShadeView)
@@ -179,7 +187,10 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
                 previewShadeMaskLayer.startPoint = .init(x: 0, y: 0.5)
                 previewShadeMaskLayer.endPoint = .init(x: 1, y: 0.5)
                 
-                previewShadeView = UIView(frame: .init(x: 0, y: 0, width: width, height: 55))
+//                previewShadeView = UIView(frame: .init(x: 0, y: 0, width: width, height: 55))
+                let previewListHeight: CGFloat = UIDevice.isPad ? 110 : 90
+//                previewListView = PhotoPreviewListView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
+                previewShadeView = UIView(frame: .init(x: 0, y: 0, width: width, height: previewListHeight))
                 previewShadeView.addSubview(previewListView)
                 previewShadeView.layer.mask = previewShadeMaskLayer
                 addSubview(previewShadeView)
@@ -316,7 +327,9 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
     
     private func initSelectedView() {
         let viewConfig = pickerConfig.previewView.bottomView
-        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: 70))
+//        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: 70))
+        let selectedViewHeight: CGFloat = UIDevice.isPad ? 110 : 90
+        selectedView = PhotoPreviewSelectedView(frame: CGRect(x: 0, y: 0, width: width, height: selectedViewHeight))
         selectedView.isPhotoList = type == .picker
         if let cellClass = viewConfig.customSelectedViewCellClass {
             selectedView.collectionView.register(
@@ -518,7 +531,7 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
                 selectedView.width = width
                 if !isShowPrompt {
                     if selectedView.assetCount > 0 {
-                        contentView.y = selectedView.frame.maxY + 5
+                        contentView.y = selectedView.frame.maxY
                     }else {
                         contentView.y = height - contentView.height
                     }
@@ -528,17 +541,17 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
             }
         }else if type == .preview {
             if isShowPreviewList {
-                previewShadeView.y = 10
+                previewShadeView.y = 0
                 previewShadeView.width = width
                 previewShadeMaskLayer.frame = previewShadeView.bounds
                 previewListView.frame = previewShadeView.bounds
-                contentView.y = 75
+                contentView.y = previewShadeView.frame.maxY
             }else {
                 if isShowSelectedView {
                     selectedView.y = 0
                     selectedView.width = width
                     if selectedView.assetCount > 0 {
-                        contentView.y = selectedView.frame.maxY + 5
+                        contentView.y = selectedView.frame.maxY
                     }else {
                         contentView.y = height - contentView.height
                     }
@@ -548,10 +561,12 @@ public class PhotoToolBarGlassView: UIView, PhotoToolBar {
             }
         }else {
             if isShowPreviewList {
-                previewShadeView.y = 10
+//                previewShadeView.y = 10
+                previewShadeView.y = 0
                 previewShadeView.width = width
                 previewShadeMaskLayer.frame = previewShadeView.bounds
                 previewListView.frame = previewShadeView.bounds
+                
             }else {
                 if isShowSelectedView {
                     selectedView.y = 0
